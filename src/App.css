@@ -1,38 +1,298 @@
-.App {
+:root{
+  --primary-color: #2d4059;
+  --primary-color-dark: #212E40;
+  --secondary-color: #ea5455;
+  --secondary-color-transparent: #ea5461d1;
+  --secondary-color-dark: #D14B4B;
+  --light-color: #ffffff;
+  --light-color-transparent: #ffffff25;
+}
+
+body{
+  font-size: 16px;
+}
+
+*{
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+a{
+  color: var(--light-color);
+}
+button{
+  all: unset;
+}
+button:hover{
+  cursor: pointer;
+}
+.row{
+  display: flex;
+  flex-flow: row;
+}
+
+.column{
+  display: flex;
+  flex-flow: column;
+}
+
+.container{
+  max-width: 1280px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: auto;
+}
+
+.fill-height{
+  height: 100%;
+}
+
+.heading{
+  font-size: 2rem;
+}
+
+.display{
+  font-size: 3rem;
+}
+
+.button{
+  all: unset;
+  padding: 1rem 2rem;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.button--outlined{
+  background-color: transparent;
+  border: solid 1px;
+}
+.button--outlined:hover{
+  background-color: var(--light-color-transparent);
+}
+
+.button--primary{
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.button--primary:hover{
+  background-color: var(--primary-color-dark);
+}
+
+.button--secondary{
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.button--secondary:hover{
+  background-color: var(--secondary-color-dark);
+}
+
+.fa{
+  margin-left: -1rem;
+  margin-right: 0.5rem;
+}
+
+.text--center{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.text--light{
+  color: var(--light-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.text--secondary{
+  color: var(--secondary-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.Navbar{
+  background-color: var(--secondary-color);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.navbar-item__link{
+  margin-left: 2rem;
+}
+
+.navbar-item__text{
+  vertical-align: middle;
+}
+
+.navbar-item__text::before{
+  content: "";
+  margin-left: 0.3rem;
+}
+
+.navbar-item__icon{
+  width: 1rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+.Navbar .row{
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.WelcomeContainer{
+  min-width: 40%;
+  padding: 1rem;
+  background: linear-gradient(var(--secondary-color-transparent), var(--secondary-color)),url("./assets/welcome.png");
+  background-size: cover;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.LoginContainer, .SignupContainer{
+  min-width: 60%;
+  padding: 1rem;
+  background-color: var(--light-color);
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.brand a{
+  display: inline-flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.brand__logo{
+  width: 3rem;
+  height: auto;
+}
+
+.brand__text{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.welcome{
+  margin: auto;
+}
+
+.welcome-wrapper{
+  padding: 3rem;
+}
+
+.welcome__description{
+  font-size: 1.2rem;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.LoginForm, .SignupForm{
+  margin: auto;
+}
+
+.LoginForm .display, .SignupForm .display{
+  padding-bottom: 2em;
+}
+
+.LoginForm .button, .SignupForm .button{
+  margin-top: 2rem;
+}
+
+.form__group{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: auto;
+  width: 20em;
+}
+
+.input{
+  all: unset;
+  background-color: var(--light-color);
+  border: solid 1px #00000046;
+  padding: 0.5em;
+  border-radius: 0.25rem;
+}
+
+.input:focus{
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.label{
+  font-size: 1.2rem;
+}
+
+.Bootcamps{
+  display: flex;
+  flex-flow: column;
+}
+
+.SearchBar .input{
+  background: url("assets/search-black.svg") no-repeat scroll 0.5em 0.5em;
+  background-size: 1em;
+  padding-left: 2em;
+  text-align: left;
+  font-size: 1.3rem;
+  width: 40%;
+}
+
+.SearchBar .input:focus{
+  background: url("assets/search.svg") no-repeat scroll 0.5em 0.5em;
+  background-size: 1em;
+  padding-left: 2em;
+}
+
+.search__group{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: auto;
+}
+
+.BootcampList{
+  padding-top: 3rem;
+}
+
+.BootcampListItem{
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  word-wrap: break-word;
+  border: 1px solid #00000046;
+  min-width: 0;
+  box-sizing: border-box;
+  max-width: 50rem;
+  margin: auto;
+  margin-bottom: 1.5rem;
+}
+
+.bootcamp-data{
+  padding: 1.25rem;
+  padding-bottom: 2.5rem;
+  justify-content: space-between;
+}
+
+.bootcamp-name{
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.bootcamp-location{
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.2rem;
+  width: fit-content;
+  background-color: var(--primary-color);
+}
+
+.ErrorCard{
+  background-color: #ea5455;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-top: 2rem;
 }
