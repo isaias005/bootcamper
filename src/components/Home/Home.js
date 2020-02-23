@@ -1,27 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../Auth';
 import { useHistory } from 'react-router-dom';
 
 import WelcomeContainer from '../WelcomeContainer';
 import LoginContainer from './LoginContainer';
+import LoadingSpinner from '../LoadingSpinner';
 
 const Home = () => {
   const auth = useContext(AuthContext);
   const history = useHistory();
+  const [isAuth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  if (!auth.isAuthenticated()) {
-    return (
-      <div className="Home">
-        <div className="row">
-          <WelcomeContainer actionPath="/signup" actionText="Registrate" welcomeHeader="Bienvenido de vuelta!" welcomeText="Ingresa tus datos para mantenerte conectado con nosotros." />
-          <LoginContainer />
-        </div>
+  useEffect(() => {
+    setLoading(true);
+    auth.isAuthenticated()
+      .then(value => {
+        setAuth(value);
+        if (isAuth) {
+          history.push("/bootcamps");
+        } else {
+          setLoading(false);
+          return true;
+        }
+      })
+      .catch(err => {
+        setLoading(false);
+        throw err;
+      })
+  }, [isAuth, history, auth])
+
+  return (
+    <div className="Home">
+      <div className="row">
+        {
+          loading ?
+            <LoadingSpinner />
+            :
+            <React.Fragment>
+              <WelcomeContainer actionPath="/signup" actionText="Registrate" welcomeHeader="Bienvenido de vuelta!" welcomeText="Ingresa tus datos para mantenerte conectado con nosotros." />
+              <LoginContainer />
+            </React.Fragment>
+        }
       </div>
-    );
-  } else {
-    history.push("/bootcamps");
-    return false;
-  }
+    </div>
+  );
 }
 
 export default Home;

@@ -1,8 +1,4 @@
 class Auth {
-  constructor() {
-    this.authenticated = false;
-  }
-
   async login(email, password) {
     try {
       const response = await fetch(
@@ -17,7 +13,7 @@ class Auth {
         }
       );
       this.loginErrorHandler(response, () => {
-        this.authenticated = true;
+        return true;
       });
     } catch (err) {
       throw err;
@@ -39,7 +35,6 @@ class Auth {
       if (response.status !== 200) {
         throw new Error("Error al cerrar sesion");
       } else {
-        this.authenticated = false;
         return response;
       }
     } catch (err) {
@@ -61,7 +56,7 @@ class Auth {
         }
       );
       this.signupErrorHandler(response, () => {
-        this.authenticated = true;
+        return true;
       })
     } catch (err) {
       throw err;
@@ -69,37 +64,39 @@ class Auth {
 
   }
 
-  async getCurrentUser(){
-    try{
+  async getCurrentUser() {
+    try {
       const response = await fetch(
         "https://bootcamp-server.herokuapp.com/api/v1/auth/me",
         {
           method: "get",
           credentials: "include",
-          headers:{
+          headers: {
             "Content-Type": "application/json"
           }
         }
       );
-      if(response.status !== 200){
-        return {};
+      if (response.status !== 200) {
+        return false;
       }
       const user = await response.json();
       return user.data;
-    } catch(err){
+    } catch (err) {
       throw err;
     }
   }
-  
-  isAuthenticated() {
-    this.getCurrentUser().then(data=>{
-      if(data){
-        this.authenticated = true;
+
+  async isAuthenticated() {
+    try {
+      const data = await this.getCurrentUser();
+      if (data) {
+        return true;
       } else {
-        this.authenticated = false;
+        return false;
       }
-    })
-    return this.authenticated;
+    } catch(err){
+      throw err;
+    }
   }
 
   loginErrorHandler(response, callback) {

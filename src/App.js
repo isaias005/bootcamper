@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
 import Home from './components/Home/Home'
 import Signup from './components/Signup/Signup'
 import Bootcamps from './components/Bootcamps/Bootcamps'

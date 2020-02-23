@@ -37,13 +37,13 @@ const Navbar = () => {
       <div className="container row">
         <Brand />
         <div className="navbar-items">
-          <Link to="/bootcamps" className="navbar-item__link"><img src={search} className="navbar-item__icon" /><span className="navbar-item__text">Buscar Bootcamps</span></Link>
+          <Link to="/bootcamps" className="navbar-item__link"><img src={search} alt="Buscar bootcamps" className="navbar-item__icon" /><span className="navbar-item__text">Buscar Bootcamps</span></Link>
           {
             currentUserRole === "admin" || currentUserRole === "publisher" ?
-              <Link to="/add-bootcamp" className="navbar-item__link"><img src={plus} className="navbar-item__icon" /><span className="navbar-item__text">Añadir Bootcamp</span></Link>
+              <Link to="/add-bootcamp" className="navbar-item__link"><img src={plus} alt="Añadir bootcamps" className="navbar-item__icon" /><span className="navbar-item__text">Añadir Bootcamp</span></Link>
               : false
           }
-          <button onClick={onLogout} className="navbar-item__link"><img src={logout} className="navbar-item__icon" /><span className="navbar-item__text">Cerrar Sesion</span></button>
+          <button onClick={onLogout} className="navbar-item__link"><img src={logout} alt="Cerrar sesion" className="navbar-item__icon" /><span className="navbar-item__text">Cerrar Sesion</span></button>
         </div>
       </div>
     </div>

@@ -296,3 +296,12 @@ button:hover{
   border-radius: 0.25rem;
   margin-top: 2rem;
 }
+
+.LoadingSpinner{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+}
