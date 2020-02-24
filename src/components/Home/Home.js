@@ -9,15 +9,13 @@ import LoadingSpinner from '../LoadingSpinner';
 const Home = () => {
   const auth = useContext(AuthContext);
   const history = useHistory();
-  const [isAuth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     auth.isAuthenticated()
       .then(value => {
-        setAuth(value);
-        if (isAuth) {
+        if (value) {
           history.push("/bootcamps");
         } else {
           setLoading(false);
@@ -28,7 +26,7 @@ const Home = () => {
         setLoading(false);
         throw err;
       })
-  }, [isAuth, history, auth])
+  }, [history, auth])
 
   return (
     <div className="Home">

@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const BootcampListItem = (props) =>{
   return(
     <div className="BootcampListItem row">
-        <img alt="Foto de bootcamp" src={props.bootcamp.photo}/>
+        <img className="bootcamp-image" alt="Foto de bootcamp" src={props.bootcamp.photo}/>
         <div className="bootcamp-data column">
-          <div className="bootcamp-name text--secondary">{props.bootcamp.name}</div>
-          <div className="bootcamp-location text--light">{props.bootcamp.location.city+", "+props.bootcamp.location.state}</div>
+          <Link to={"/bootcamps/"+props.bootcamp._id} className="bootcamp-name text--secondary">{props.bootcamp.name}</Link>
+          <div className="bootcamp-location text--light">País: {props.bootcamp.location.country}</div>
           <div className="bootcamp-careers">{props.bootcamp.careers.join(", ")}</div>
         </div>
     </div>

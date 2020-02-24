@@ -16,7 +16,7 @@ const Navbar = () => {
       .then(user => {
         setCurrentUserRole(user.role);
       })
-  })
+  }, [auth])
 
   const onLogout = () => {
     try {
@@ -28,7 +28,7 @@ const Navbar = () => {
     }
   }
 
-  if (!auth.isAuthenticated()) {
+  if (!currentUserRole) {
     return false;
   }
 

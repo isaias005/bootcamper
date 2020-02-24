@@ -26,10 +26,7 @@ class Auth {
         "https://bootcamp-server.herokuapp.com/api/v1/auth/logout",
         {
           method: "get",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+          credentials: "include"
         }
       );
       if (response.status !== 200) {
@@ -42,7 +39,7 @@ class Auth {
     }
   }
 
-  async signup(name, email, password) {
+  async signup(name, email, password, role) {
     try {
       const response = await fetch(
         "https://bootcamp-server.herokuapp.com/api/v1/auth/register",
@@ -52,7 +49,7 @@ class Auth {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ name: name, email: email, password: password })
+          body: JSON.stringify({ name: name, email: email, password: password, role: role })
         }
       );
       this.signupErrorHandler(response, () => {
@@ -70,10 +67,7 @@ class Auth {
         "https://bootcamp-server.herokuapp.com/api/v1/auth/me",
         {
           method: "get",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+          credentials: "include"
         }
       );
       if (response.status !== 200) {
@@ -90,11 +84,11 @@ class Auth {
     try {
       const data = await this.getCurrentUser();
       if (data) {
-        return true;
+        return data;
       } else {
         return false;
       }
-    } catch(err){
+    } catch (err) {
       throw err;
     }
   }

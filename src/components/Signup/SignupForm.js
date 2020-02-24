@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ErrorCard from '../ErrorCard';
-import {AuthContext} from '../Auth';
+import { AuthContext } from '../Auth';
 
 const SignupForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const auth = useContext(AuthContext);
@@ -16,18 +17,18 @@ const SignupForm = () => {
   const onSignup = async (e) => {
     e.preventDefault();
     try {
-      if(name && email && password && confirmPassword){
-        if(password !== confirmPassword){
+      if (name && email && password && confirmPassword && role) {
+        if (password !== confirmPassword) {
           throw new Error("Las contraseñas no coinciden");
         }
-        if(password.length < 6){
+        if (password.length < 6) {
           throw new Error("La contraseña tiene que ser mayor o igual a 6 caracteres");
         }
       } else {
         throw new Error("Rellena todos los campos");
       }
       setLoading(true);
-      await auth.signup(name, email, password);
+      await auth.signup(name, email, password, role);
       setLoading(false);
       history.push("/bootcamps");
     } catch (err) {
@@ -56,6 +57,13 @@ const SignupForm = () => {
           <div className="form__group column">
             <label className="label" htmlFor="confirmPassword">Confirmar Contraseña</label>
             <input className="input" type="password" name="confirmPassword" autoComplete="on" onChange={(e) => setConfirmPassword(e.target.value)} />
+          </div>
+          <div className="form__group column">
+            <label className="label" htmlFor="role">Rol</label>
+            <select className="input" type="select" name="role" onChange={(e) => setRole(e.target.value)}>
+              <option value="user">Usuario</option>
+              <option value="publisher">Publicador</option>
+            </select>
           </div>
           <div className="form-group text--center">
             {loading ?

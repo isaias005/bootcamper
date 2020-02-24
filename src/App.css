@@ -38,7 +38,7 @@ button:hover{
 }
 
 .container{
-  max-width: 1280px;
+  max-width: 1140px;
   padding-left: 1rem;
   padding-right: 1rem;
   margin: auto;
@@ -46,6 +46,9 @@ button:hover{
 
 .fill-height{
   height: 100%;
+}
+.align-center{
+  align-items: center;
 }
 
 .heading{
@@ -66,9 +69,12 @@ button:hover{
   background-color: var(--primary-color);
   color: var(--light-color);
 }
-
+.button--tile{
+  border-radius: 0.25rem;
+}
 .button:hover{
   cursor: pointer;
+  background-color: var(--primary-color-dark);
 }
 
 .button--outlined{
@@ -198,7 +204,7 @@ button:hover{
 }
 
 .LoginForm .display, .SignupForm .display{
-  padding-bottom: 2em;
+  padding-bottom: 1em;
 }
 
 .LoginForm .button, .SignupForm .button{
@@ -215,7 +221,7 @@ button:hover{
 .input{
   all: unset;
   background-color: var(--light-color);
-  border: solid 1px #00000046;
+  border: solid 1px var(--primary-color-dark);
   padding: 0.5em;
   border-radius: 0.25rem;
 }
@@ -224,7 +230,12 @@ button:hover{
   border-color: var(--secondary-color);
   color: var(--secondary-color);
 }
-
+.input[type=checkbox]{
+  border-color: var(--primary-color-dark);
+}
+.input:checked{
+  background-color: var(--secondary-color);
+}
 .label{
   font-size: 1.2rem;
 }
@@ -263,12 +274,16 @@ button:hover{
   background-clip: border-box;
   border-radius: 0.25rem;
   word-wrap: break-word;
-  border: 1px solid #00000046;
+  border: 1px solid var(--primary-color-dark);
   min-width: 0;
   box-sizing: border-box;
   max-width: 50rem;
   margin: auto;
   margin-bottom: 1.5rem;
+}
+.bootcamp-image{
+  width: 250px;
+  height: 150px;
 }
 
 .bootcamp-data{
@@ -281,6 +296,9 @@ button:hover{
   font-size: 1.3rem;
   font-weight: bold;
 }
+.bootcamp-name:hover{
+  text-decoration: underline;
+}
 
 .bootcamp-location{
   font-size: 0.8rem;
@@ -289,7 +307,105 @@ button:hover{
   width: fit-content;
   background-color: var(--primary-color);
 }
+.SingleBootcamp{
+  line-height: 1.5rem;
+}
+.single-bootcamp__cost{
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
 
+.single-bootcamp__description{
+  padding-top: 1rem;
+}
+.single-bootcamp__left{
+  flex: 0 1 60%;
+}
+
+.single-bootcamp__right{
+  flex: 0 1 40%;
+  align-items: center;
+}
+.single-bootcamp__right img{
+  width: 250px;
+  height: 150px;
+}
+
+.single-bootcamp__right > *{
+  margin-bottom: 1rem;
+}
+.single-bootcamp__courses{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.SingleBootcampCourse{
+  margin-bottom: 2rem;
+}
+
+.course-body{
+  padding: 1rem;
+  border: solid 1px var(--primary-color-dark);
+  border-top: none;
+}
+.course-duration{
+  font-size: 1.2rem;
+}
+.course-description{
+  padding-top: 1rem;
+}
+.course-cost{
+  font-size: 1.2rem;
+  padding-top: 1rem;
+}
+.course-title{
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  background-color: var(--secondary-color);
+}
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  transform: translate(0,0);
+}
+.modal-body{
+  position: fixed;
+  background-color: var(--light-color);
+  width: 50%;
+  padding: 2rem;
+  height: 80%;
+  border-radius: 0.25rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  overflow-y: scroll;
+}
+
+.modal--hide{
+  display: none;
+}
+
+.modal--display{
+  display: block;
+}
+
+.EditBootcampForm{
+  line-height: 1.5rem;
+}
+
+.AddBootcamp{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.AddBootcamp .ErrorCard, .EditBootcampForm .ErrorCard{
+  width: 50%;
+  margin: auto;
+  margin-top: 1rem;
+}
 .ErrorCard{
   background-color: #ea5455;
   padding: 1rem;
@@ -304,4 +420,55 @@ button:hover{
   justify-content: center;
   align-items: center;
   font-size: 10rem;
+}
+
+.NotFound{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.NotFound > *{
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 1024px){
+  .Home .row{
+    flex-flow: column;
+  }
+  .Navbar .row{
+    flex-flow: column;
+  }
+  .navbar-item__link{
+    margin: 0;
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .SearchBar .input{
+    width: 60%;
+  }
+  .BootcampListItem{
+    flex-flow: column;
+    align-items: center;
+  }
+  .bootcamp-data{
+    align-items: center;
+    text-align: center;
+  }
+  .bootcamp-data > *{
+    margin-top: 1rem;
+  }
+  .EditBootcampForm{
+    line-height: initial;
+  }
+  .SingleBootcamp{
+    flex-flow: column;
+    flex-direction: column-reverse;
+  }
+  .modal-body .button--secondary{
+    margin-top: 3rem;
+  }
 }
